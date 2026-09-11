@@ -1,0 +1,7 @@
+node_modules/
+.convex/
+.env
+.env.local
+# convex/_generated/ is intentionally COMMITTED: the web app builds against it via the @convex/* alias
+# convex/_generated/
+.DS_Store

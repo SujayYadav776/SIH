@@ -1,0 +1,16 @@
+# dependencies / builds
+node_modules/
+.next/
+out/
+
+# convex local state + generated-by-deploy caches
+.convex/
+
+# environment: only .env.example is tracked
+.env
+.env.*
+!.env.example
+
+# logs / tooling
+*.log
+.DS_Store
