@@ -46,3 +46,5 @@ The demo uses a server-side `DEV_AUTH=1` fallback that resolves the seeded
 coordinator for unauthenticated requests. It is off by default and must never
 be enabled outside a throwaway demo deployment. The production auth path is
 ConvexAuth - see `kaushalloop-convex/CONVEX_AUTH.md`.
+
+<!-- last deploy check: 2026-09-11T11:42:57Z -->
