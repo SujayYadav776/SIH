@@ -14,3 +14,6 @@ out/
 # logs / tooling
 *.log
 .DS_Store
+
+# vercel CLI link
+.vercel/
