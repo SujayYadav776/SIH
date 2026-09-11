@@ -1,8 +1,8 @@
 {
-  "name": "kaushalloop",
+  "name": "setu",
   "private": true,
   "workspaces": [
-    "kaushalloop-web",
-    "kaushalloop-convex"
+    "setu-web",
+    "setu-convex"
   ]
 }
