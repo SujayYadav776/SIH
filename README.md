@@ -22,7 +22,7 @@ directory set to `setu-web/`.
 # terminal A - backend (anonymous local deployment at 127.0.0.1:3210)
 cd setu-convex && npm install && npx convex dev
 npx convex env set DEV_AUTH 1
-npx convex run seed:resetDemo '{"confirmation":"KAUSHALLOOP_DEMO_RESET"}'
+npx convex run seed:resetDemo '{"confirmation":"SETU_DEMO_RESET"}'
 
 # terminal B - web
 cd setu-web && npm install

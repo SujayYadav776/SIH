@@ -11,7 +11,7 @@ normalisation uses the deterministic resolver; the LLM/worker path degrades grac
 cd setu-convex && npm install && npx convex dev
 #   -> prints a local URL, e.g. http://127.0.0.1:3210
 #   seed the demo:
-npx convex run seed:resetDemo '{"confirmation":"KAUSHALLOOP_DEMO_RESET"}'
+npx convex run seed:resetDemo '{"confirmation":"SETU_DEMO_RESET"}'
 #   enable the dev identity so queries resolve the seeded coordinator:
 npx convex env set DEV_AUTH 1
 
@@ -34,7 +34,7 @@ Vercel). `setu-convex/convex/_generated` is committed on purpose.
 1. **Convex**: from `setu-convex/`, `npx convex login` then `npx convex deploy`
    → note the production URL (`https://<name>-<hash>.convex.cloud`).
 2. **Seed the prod deployment**:
-   `npx convex run seed:resetDemo '{"confirmation":"KAUSHALLOOP_DEMO_RESET"}' --prod`
+   `npx convex run seed:resetDemo '{"confirmation":"SETU_DEMO_RESET"}' --prod`
 3. **Demo mode**: for the SIH demo URL, set `DEV_AUTH=1` on the deployment
    (`npx convex env set DEV_AUTH 1 --prod`) so visitors land in the seeded coordinator
    view without a login. This is a shared demo identity, not auth: before any real
@@ -49,9 +49,9 @@ Vercel). `setu-convex/convex/_generated` is committed on purpose.
 
 ## Health & reset
 
-- Convex: `npx convex run seed:resetDemo '{"confirmation":"KAUSHALLOOP_DEMO_RESET"}'`
+- Convex: `npx convex run seed:resetDemo '{"confirmation":"SETU_DEMO_RESET"}'`
   resets to the known demo state. Worked-through scenario = reset, then
-  `npx convex run seed:loadDemoScenario '{"confirmation":"KAUSHALLOOP_DEMO_RESET"}'`.
+  `npx convex run seed:loadDemoScenario '{"confirmation":"SETU_DEMO_RESET"}'`.
   The in-app **Reset demo** / **Scenario** buttons (coordinator/admin only, enforced
   server-side) run the same mutations and reload the page so stale ids cannot linger.
 - Web: `npm run build` must pass; `npm run typecheck` is wired.

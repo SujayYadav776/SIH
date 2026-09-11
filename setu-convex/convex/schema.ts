@@ -209,6 +209,34 @@ export default defineSchema({
     verified: v.boolean(),
   }).index("by_learner", ["learnerId"]).index("by_type", ["eventType"]),
 
+  // Flat trainee-level outcomes dataset powering the Policy Dashboard (filters:
+  // district / scheme / trade; metrics: placement, dropout, days-to-placement,
+  // 3/6-month retention). Deliberately SYNTHETIC for the demo but built on real
+  // scheme names (PMKVY, MSSDS) and representative NSQF/NCO codes. Distinct from
+  // the event-sourced `outcomeEvents` table above.
+  synthetic_outcomes: defineTable({
+    traineeId: v.string(), // human-readable demo id, e.g. "PMKVY-NAG-ELEC-000123"
+    scheme: v.string(), // PMKVY 4.0, MSSDS, Skill India Digital, RPL, NSDC Sector Skills
+    trainingCenter: v.string(),
+    district: v.string(),
+    state: v.string(),
+    urbanRural: v.union(v.literal("urban"), v.literal("semi_urban"), v.literal("rural")),
+    trade: v.string(), // e.g. "Electrician"
+    nsqfCode: v.string(), // representative NCO/NSQF code, e.g. "DEO/5021"
+    nsqfLevel: v.number(), // 1..8
+    completionStatus: v.union(v.literal("completed"), v.literal("dropped"), v.literal("ongoing")),
+    placementStatus: v.union(v.literal("placed"), v.literal("unplaced"), v.literal("unknown")),
+    daysToPlacement: v.optional(v.number()), // present only when placed
+    retained3Months: v.boolean(),
+    retained6Months: v.boolean(),
+    salaryBand: v.optional(v.string()), // "<15k" | "15-25k" | "25-40k" | "40k+"
+    cohortYear: v.number(), // 2022 | 2023 | 2024 — used by the trend chart
+  })
+    .index("by_district", ["district"])
+    .index("by_scheme", ["scheme"])
+    .index("by_trade", ["trade"])
+    .index("by_year", ["cohortYear"]),
+
   pipelineRuns: defineTable({
     learnerId: v.optional(v.id("learners")),
     documentId: v.optional(v.id("documents")),
