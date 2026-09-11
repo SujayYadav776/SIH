@@ -26,15 +26,25 @@ The coordinator app is at `/`; the marketing site is at `/product`, `/institutio
 
 ## Production (Vercel + Convex cloud)
 
-1. **Convex**: `npx convex deploy` (or link a project) → note the `CONVEX_URL`.
-2. **Auth**: before going public, replace the `DEV_AUTH` shim with real ConvexAuth
-   (see `kaushalloop-convex/CONVEX_AUTH.md`) and **do not** set `DEV_AUTH=1` on prod.
-3. **Vercel**: import the `kaushalloop-web` repo, set env var
-   `NEXT_PUBLIC_CONVEX_URL=<your Convex URL>`, deploy. (The `@convex/*` tsconfig path
-   alias assumes the two repos sit side by side; for a standalone web deploy, either
-   vendor the generated `_generated` or run `npx convex codegen` against the deployed
-   functions during build.)
-4. **AI worker (optional)**: deploy `kaushalloop-ai-service` (Dockerfile provided) and set
+This repo is an **npm-workspaces monorepo** (`kaushalloop-web` + `kaushalloop-convex`
+as siblings, so the `@convex/*` tsconfig alias resolves; deps hoist to the root
+`node_modules`, which is what lets the web build type-check the Convex functions on
+Vercel). `kaushalloop-convex/convex/_generated` is committed on purpose.
+
+1. **Convex**: from `kaushalloop-convex/`, `npx convex login` then `npx convex deploy`
+   → note the production URL (`https://<name>-<hash>.convex.cloud`).
+2. **Seed the prod deployment**:
+   `npx convex run seed:resetDemo '{"confirmation":"KAUSHALLOOP_DEMO_RESET"}' --prod`
+3. **Demo mode**: for the SIH demo URL, set `DEV_AUTH=1` on the deployment
+   (`npx convex env set DEV_AUTH 1 --prod`) so visitors land in the seeded coordinator
+   view without a login. This is a shared demo identity, not auth: before any real
+   public launch, replace the shim with ConvexAuth (`kaushalloop-convex/CONVEX_AUTH.md`)
+   and remove `DEV_AUTH`.
+4. **Vercel**: push this monorepo to GitHub → Import Project → set
+   **Root Directory = `kaushalloop-web`** → add env var
+   `NEXT_PUBLIC_CONVEX_URL=<production Convex URL>` (build-time: redeploy after
+   changes) → Deploy. Vercel detects the workspace root and installs at the repo root.
+5. **AI worker (optional)**: deploy `kaushalloop-ai-service` (Dockerfile provided) and set
    `AI_SERVICE_URL` / `AI_SERVICE_TOKEN` on the Convex deployment. Enforce the bearer token.
 
 ## Health & reset

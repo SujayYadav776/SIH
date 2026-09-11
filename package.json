@@ -1,0 +1,8 @@
+{
+  "name": "kaushalloop",
+  "private": true,
+  "workspaces": [
+    "kaushalloop-web",
+    "kaushalloop-convex"
+  ]
+}
