@@ -17,3 +17,7 @@ out/
 
 # vercel CLI link
 .vercel/
+
+# lockfiles omitted: Windows-generated lock dropped the Linux lightningcss native binary
+# Vercel resolves via `npm install` (see installCommand)
+package-lock.json
