@@ -139,8 +139,14 @@ is a **static demo shell**. Marketing surfaces do not exist yet.
   full coordinator journey incl. verify, plan generation, CSV download, scenario load and
   reset = **85s vs the 300s budget - PASS**; per-step timings in
   `audit_shots/rehearsal-steps.json`.
-- [ ] **6.5 Deploy.** Vercel for web; Convex prod deployment; `NEXT_PUBLIC_CONVEX_URL`;
-  health + seeded login; recoverable reset.
+- [x] **6.5 Deploy.** Convex prod `polite-crab-36` (https://polite-crab-36.convex.cloud)
+  deployed + `DEV_AUTH=1` + seeded (60 learners / 315 evidence rows); identity + queries
+  verified via CLI. Monorepo pushed to https://github.com/SujayYadav776/SIH. Vercel project
+  `kaushalloop` (root dir `kaushalloop-web`, `NEXT_PUBLIC_CONVEX_URL` set) deployed to
+  **https://kaushalloop.vercel.app**. `scripts/prod-verify.mjs` against the live URL:
+  15/15 routes render real Convex data, 0 axe violations, 0 console errors.
+  Recoverable reset via the in-app **Reset demo** / **Scenario** (staff-gated) or
+  `npx convex run seed:resetDemo`. **Phase 6 complete - site is live.**
 
 ---
 
