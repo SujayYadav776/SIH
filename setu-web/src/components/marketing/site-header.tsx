@@ -32,7 +32,7 @@ export function SiteHeader() {
         <Link href="/product" className="flex items-center gap-2 font-semibold tracking-tight">
           <Image
             src="/brand/icon.png"
-            alt="Setu."
+            alt=""
             width={28}
             height={28}
             className="size-7 shrink-0 rounded-lg"

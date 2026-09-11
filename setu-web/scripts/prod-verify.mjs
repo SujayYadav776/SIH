@@ -5,7 +5,7 @@ import { chromium } from "@playwright/test";
 import fs from "fs";
 import path from "path";
 
-const BASE = process.env.BASE || "https://setu.vercel.app";
+const BASE = process.env.BASE || "https://setu-sih.vercel.app";
 const AXE = path.resolve("../node_modules/axe-core/axe.min.js");
 const OUT = "E:/SIH/prod_shots";
 fs.mkdirSync(OUT, { recursive: true });

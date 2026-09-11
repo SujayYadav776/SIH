@@ -23,7 +23,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-10 text-sm md:flex-row md:items-start md:justify-between md:px-6">
           <div>
             <div className="flex items-center gap-2 font-semibold">
-              <Image src="/brand/icon.png" alt="Setu." width={24} height={24} className="size-6 shrink-0 rounded" />
+              <Image src="/brand/icon.png" alt="" width={24} height={24} className="size-6 shrink-0 rounded" />
               Setu.
             </div>
             <p className="mt-2 max-w-xs text-muted-foreground">Institutional employability intelligence. Demonstrated on a synthetic dataset.</p>
