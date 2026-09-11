@@ -22,6 +22,9 @@ const skillSeeds = [
 /** Staff-only demo controls: any signed-in coordinator/admin of the demo institution. */
 async function requireDemoStaff(ctx: MutationCtx, confirmation: string) {
   if (confirmation !== DEMO_CONFIRMATION) throw new Error("Invalid demo reset confirmation");
+  // Bootstrap: a deployment with no users has no demo data and no coordinator yet,
+  // so the very first seed cannot be staff-gated. Once any user exists, gate is strict.
+  if ((await ctx.db.query("users").first()) === null) return null;
   const user = await requireUser(ctx);
   if (user.role !== "coordinator" && user.role !== "admin") {
     throw new Error("Only demo staff can reset the dataset");
